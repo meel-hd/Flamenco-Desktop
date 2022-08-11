@@ -1,5 +1,5 @@
 body {
-    background-color: #202020;
+    background-color: #111;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@ body {
     min-height: 250px;
     height: 50vh;
     margin-top: 20vh;
-    background-color: #2f2e2e;
+    background-color: #2f2e2e44;
     flex-direction: column;
     display: flex;
     justify-content: space-around;
@@ -29,6 +29,7 @@ body {
     height: 35px;
     border-radius: 5px;
     font-weight: bold;
+    border: none;
     caret-color: #b6adff;
 }
 

@@ -1,8 +1,0 @@
-directories:
-  output: dist
-  buildResources: build
-productName: Flamenco Manager
-appId: Flamenco Manager Desktop
-icon: assets/icons/png/logo.png
-files: []
-electronVersion: 20.0.2
