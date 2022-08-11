@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flamenco Manager</title>
+    <link rel="stylesheet" href="renderer.css">
+
+</head>
+<body>
+    <div class="start-box">
+        <h2>Enter Setup Assistant Link<img width="50px" height="50px" src="assets/logo.svg" /></h2>
+        <input id="urlInput" placeholder="exp: http://127.0.0.1:8080/" type="url" />
+        <button onclick="startManager()">Start Manager</button>
+        <p style="color: red;font-weight: 500; opacity: 0;" id="alert">Invalid Url</p>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+</html>

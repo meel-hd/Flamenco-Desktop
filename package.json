@@ -1,0 +1,21 @@
+{
+  "name": "flamenco",
+  "version": "1.0.0",
+  "description": "Flamenco Manager Desktop",
+  "main": "main.js",
+  "build":{
+    "productName":"Flamenco Manager",
+    "appId":"Flamenco Manager Desktop",
+    "icon":"assets/icons/png/logo.png"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist":"electron-builder"
+  },
+  "author": "Mehdi Eloualy",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^20.0.2",
+    "electron-builder": "^23.3.3"
+  }
+}
