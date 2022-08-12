@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 var child = require("child_process").execFile;
 
+// Create the main window
 function createWindow() {
   const win = new BrowserWindow({
     title: "Flamenco Manager",
@@ -15,12 +16,29 @@ function createWindow() {
   });
 
   win.loadFile("./renderer/index.html");
-  // win.removeMenu();
+  win.removeMenu();
   // Listen for the invoke of Flamenco manager executable
   ipcMain.handle("launchManager", () => {
     startFlamencoExec();
     win.webContents.send("startClient");
     win.maximize()
+  });
+
+  // Handels The Swagger UI and open it in a new window
+  win.on("page-title-updated", (e, title) => {
+    if (title == "Swagger UI") {
+      win.loadURL("http://127.0.0.1:8080/");
+      const newWin = new BrowserWindow({
+        title: "Flamenco Manager",
+        width: 800,
+        height: 600,
+        darkTheme: true,
+        icon: path.join(__dirname, resolveIcons()),
+      });
+      newWin.loadURL("http://127.0.0.1:8080/api/v3/swagger-ui/");
+      newWin.maximize();
+      newWin.removeMenu();
+    }
   });
 }
 
