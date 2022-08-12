@@ -18,23 +18,9 @@ body {
     background-color: #2f2e2e44;
     flex-direction: column;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     border-radius: 8px;
-}
-
-.start-box input {
-    width: 50vw;
-    max-width: 400px;
-    height: 35px;
-    border-radius: 5px;
-    font-weight: bold;
-    border: none;
-    caret-color: #b6adff;
-}
-
-.start-box input:focus {
-    outline: 2px solid #b6adff;
 }
 
 .start-box button {
@@ -45,14 +31,16 @@ body {
     width: 140px;
     height: 38px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .start-box button:hover {
-    text-decoration: underline;
     background-color: #A49FDF;
     color: white;
 }
 .start-box img{
     pointer-events: none;
+    width: 70px;
+    height: 70px;
 }

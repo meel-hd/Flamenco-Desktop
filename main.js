@@ -15,7 +15,7 @@ function createWindow() {
   });
 
   win.loadFile("./renderer/index.html");
-  win.removeMenu();
+  // win.removeMenu();
   // Listen for the invoke of Flamenco manager executable
   ipcMain.handle("launchManager", () => {
     startFlamencoExec();
