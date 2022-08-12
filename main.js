@@ -1,36 +1,57 @@
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
+const { app, BrowserWindow, ipcMain } = require("electron");
+const path = require("path");
+var child = require("child_process").execFile;
 
-function createWindow () {
+function createWindow() {
   const win = new BrowserWindow({
-    title:'Flamenco Manager',
+    title: "Flamenco Manager",
     width: 800,
     height: 600,
-    darkTheme:true,
+    darkTheme: true,
     icon: path.join(__dirname, resolveIcons()),
-  })
+    webPreferences: {
+      preload: path.join(__dirname, "renderer/preload.js"),
+    },
+  });
 
-  win.loadFile('./renderer/index.html')
+  win.loadFile("./renderer/index.html");
   win.removeMenu();
+  // Listen for the invoke of Flamenco manager executable
+  ipcMain.handle("launchManager", () => {
+    startFlamencoExec();
+    win.webContents.send("startClient");
+    win.maximize()
+  });
 }
 
 app.whenReady().then(() => {
-  createWindow()
-
-  app.on('activate', () => {
+  createWindow();
+  app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
+      createWindow();
     }
-  })
-  app.setUserTasks([])
-})
+  });
+  app.setUserTasks([]);
+});
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
   }
-})
+});
 
+// Execute the flamenco-manager.exe
+function startFlamencoExec() {
+  const executablePath = path.join(__dirname, "exec/flamenco-manager.exe");
+  child(executablePath, function (err, data) {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    console.log(data.toString());
+  });
+}
 
 // Figure the icons dynamicly based on the platform
 function resolveIcons() {
